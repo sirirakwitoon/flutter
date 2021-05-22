@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:myapp/components/logo.dart';
 import 'package:myapp/const/color.dart';
+import 'package:myapp/screens/home.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -32,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     margin: EdgeInsets.only(
                       top: Get.height * 0.1,
                     ),
-                    child: buildLogo(),
+                    child: Logo(),
                   ),
                   Container(
                     width: Get.width * 0.8,
@@ -41,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       top: Get.height * 0.1,
                     ),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => Get.to(HomeScreen()),
                       child: Text("เข้าใช้งาน",
                           style: TextStyle(
                             color: AppColors.primary,
@@ -114,31 +116,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
         ));
-  }
-
-  Column buildLogo() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Text(
-          "Kept",
-          style: TextStyle(
-            fontSize: 64,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            height: 1,
-          ),
-        ),
-        Text(
-          "by Krungsri",
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        )
-      ],
-    );
   }
 
   Widget buildLanguageMenu(
