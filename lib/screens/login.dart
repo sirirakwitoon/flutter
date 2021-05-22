@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/components/logo.dart';
 import 'package:myapp/const/color.dart';
+import 'package:myapp/models/user_model.dart';
 import 'package:myapp/screens/home.dart';
+import 'package:myapp/services/user_service.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -43,7 +45,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       top: Get.height * 0.1,
                     ),
                     child: ElevatedButton(
-                      onPressed: () => Get.to(HomeScreen()),
+                      onPressed: () async {
+                        UserModel userInfo = await UserService().getUser();
+                        Get.to(HomeScreen(
+                          userInfo: userInfo,
+                        ));
+                      },
                       child: Text("เข้าใช้งาน",
                           style: TextStyle(
                             color: AppColors.primary,

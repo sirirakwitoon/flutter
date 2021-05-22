@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/components/logo.dart';
 import 'package:myapp/const/color.dart';
+import 'package:myapp/models/user_model.dart';
 
 class HomeScreen extends StatefulWidget {
+  final UserModel userInfo;
+  
+  HomeScreen({Key? key, required this.userInfo}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -33,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 margin: EdgeInsets.only(top: 64),
                 width: Get.width * 0.6,
                 child: Text(
-                  "Good morning Mr.Aphirat Nimannussonkul",
+                  "สวัสดีคุณ ${widget.userInfo.fname} ${widget.userInfo.lname} ",
                   style: TextStyle(
                       color: Colors.yellow,
                       fontSize: 28,
