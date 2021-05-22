@@ -9,7 +9,11 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
+enum Language { th, en }
+
 class _LoginScreenState extends State<LoginScreen> {
+  Language languageSelected = Language.th;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,9 +83,30 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    Container(
-                      width: 24,
-                      child: Image.asset("assets/thai-flag.png"),
+                    GestureDetector(
+                      onTap: () {
+                        Get.defaultDialog(
+                            title: "เลือกภาษา",
+                            content: Container(
+                              width: Get.width * 0.7,
+                              child: Column(
+                                children: [
+                                  buildLanguageMenu(
+                                      language: Language.th,
+                                      label: "ภาษาไทย",
+                                      languageSelected: languageSelected),
+                                  buildLanguageMenu(
+                                      language: Language.en,
+                                      label: "ภาษาอังกฤษ",
+                                      languageSelected: languageSelected),
+                                ],
+                              ),
+                            ));
+                      },
+                      child: Image.asset(
+                        getCurrentFlag(languageSelected),
+                        width: 24,
+                      ),
                     ),
                   ],
                 ),
@@ -114,6 +139,40 @@ class _LoginScreenState extends State<LoginScreen> {
         )
       ],
     );
+  }
+
+  Widget buildLanguageMenu(
+      {required Language language,
+      required String label,
+      required Language languageSelected}) {
+    return ListTile(
+      onTap: () {
+        setState(() {
+          this.languageSelected = language;
+        });
+        Get.back();
+      },
+      leading: Image.asset(
+        getCurrentFlag(language),
+        width: 24,
+      ),
+      title: Text(label),
+      trailing: languageSelected == language
+          ? Icon(
+              Icons.check,
+              color: AppColors.primary,
+            )
+          : Container(
+              width: 1,
+              height: 1,
+            ),
+    );
+  }
+
+  String getCurrentFlag(Language language) {
+    return language == Language.th
+        ? "assets/thai-flag.png"
+        : "assets/eng-flag.png";
   }
 }
 
