@@ -6,15 +6,19 @@ import 'package:myapp/const/color.dart';
 import 'package:myapp/models/user_model.dart';
 
 class HomeScreen extends StatefulWidget {
-  final UserModel userInfo;
-  
-  HomeScreen({Key? key, required this.userInfo}) : super(key: key);
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late UserModel userInfo;
+
+  @override
+  void initState() {
+    userInfo = Get.arguments;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 margin: EdgeInsets.only(top: 64),
                 width: Get.width * 0.6,
                 child: Text(
-                  "สวัสดีคุณ ${widget.userInfo.fname} ${widget.userInfo.lname} ",
+                  "สวัสดีคุณ ${userInfo.fname} ${userInfo.lname} ",
                   style: TextStyle(
                       color: Colors.yellow,
                       fontSize: 28,

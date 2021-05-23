@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/routes.dart';
 import 'package:myapp/screens/login/login.dart';
 
 void main() {
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(fontFamily: GoogleFonts.prompt().fontFamily),
       home: LoginScreen(),
+      getPages: Routes.getPages(),
     );
   }
 }
