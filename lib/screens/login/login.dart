@@ -5,6 +5,7 @@ import 'package:myapp/components/logo.dart';
 import 'package:myapp/const/color.dart';
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/screens/home.dart';
+import 'package:myapp/screens/login/login_controller.dart';
 import 'package:myapp/services/user_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,6 +18,8 @@ enum Language { th, en }
 
 class _LoginScreenState extends State<LoginScreen> {
   Language languageSelected = Language.th;
+
+  LoginController loginController = LoginController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       top: Get.height * 0.1,
                     ),
                     child: ElevatedButton(
-                      onPressed: () async {
-                        UserModel userInfo = await UserService().getUser();
-                        Get.to(HomeScreen(
-                          userInfo: userInfo,
-                        ));
-                      },
+                      onPressed: () => loginController.goToHomeScreen(),
                       child: Text("เข้าใช้งาน",
                           style: TextStyle(
                             color: AppColors.primary,
