@@ -47,6 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: ElevatedButton(
                       onPressed: () => loginController.goToHomeScreen(),
                       child: Text("เข้าใช้งาน",
+                          key: Key("login-button"),
                           style: TextStyle(
                             color: AppColors.primary,
                             fontSize: 18,
